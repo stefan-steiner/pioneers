@@ -6,7 +6,7 @@ import * as controller from "./controller.js";
 import {hoverOnChar, hoverOffChar} from "./animations/hoverCharacters.js";
 import {moveCharacterUp,moveCharacterDown, moveCharacterLeft, moveCharacterRight} from "./animations/moveCharacters.js";
 
-async function go(character) {
+export async function go(character) {
     while (controller.getTimeAdvancing() && character.alive) {
         let possible_moves = []
         if (character.coords[0] > 0) {
@@ -53,26 +53,23 @@ export function checkAlive(character) {
 }
 
 // Create and display a new goblin
-function initGoblin() {
+export function initGoblin() {
     // Display the goblin at starting spot in this constructor
     let goblin = new Character(
         "goblin",
         controller.getGoblinPop(),
         [Math.floor(constants.MAP_COLUMNS/2), 0],
         true)
-    controller.increaseGoblinPop();
     $( goblin.id ).hover( function() {
         hoverOnChar(goblin.id);
     }, function() {
         hoverOffChar(goblin.id)
     });
+    controller.addGoblin(goblin);
     go(goblin);
 }
 
-
-export async function startExploring() {
-    controller.startTime();
-    initGoblin();
+export async function explore() {
     while(controller.getTimeAdvancing()) {
         controller.advanceYear();
         let year = controller.getCurrYear()

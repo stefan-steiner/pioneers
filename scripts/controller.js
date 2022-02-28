@@ -1,24 +1,46 @@
 // Main class
 
 import {generateMap} from "./map.js";
-import {startExploring} from "./explore.js";
+import {initGoblin, explore, go} from "./explore.js";
+
+let gameLoaded = false;
+let gameStarted = false;
 
 // Set up the game
 $( document ).ready(function() {
     console.log("Generating the game map");
     map = generateMap();
+    console.log("Map has been generated");
+    gameLoaded = true;
 });
 
-// Start the characters
-$( "#go_button" ).click(function() {
-    console.log("Starting the characters");
-    startExploring();
+// Start or resume the game
+$( "#start_button" ).click(function() {
+    if (!gameLoaded) {
+        console.log("The game has not finished loading");
+    } else if (!gameStarted) {
+        console.log("Starting the game");
+        startTime();
+        initGoblin();
+        explore();
+        console.log("The game has been started");
+        gameStarted = true;
+    } else {
+        console.log("Resuming the game");
+        startTime();
+        for (let i = 0; i < goblins.length; i++) {
+            let goblin = goblins[i];
+            console.log("Resuming goblin: " + goblin.id);
+            go(goblin);
+        }
+        explore();
+    }
 });
 
 // Pause the game
 $( "#stop_button" ).click(function() {
-    console.log("Pause the game");
-    timeAdvancing = false;
+    console.log("Pausing the game");
+    stopTime();
 });
 
 // Game board
@@ -63,10 +85,14 @@ export function getTimeSpeed() {
     return timeSpeed;
 }
 
-// Populations
+// Characters
+
+let goblins = []
+
 let goblinPop = 0;
 
-export function increaseGoblinPop() {
+export function addGoblin(goblin) {
+    goblins.push(goblin)
     goblinPop += 1;
 }
 

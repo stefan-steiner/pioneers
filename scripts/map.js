@@ -23,9 +23,16 @@ export function generateMap() {
     for (let r = 0; r < constants.MAP_ROWS; r++) {
         result.push([]);
         for (let c = 0; c < constants.MAP_COLUMNS; c++) {
-            let numTypes = constants.SPACE_TYPES.length;
-            let rand = Math.floor(Math.random() * numTypes);
-            let spaceType = constants.SPACE_TYPES[rand];
+            let spaceType;
+            // Starting space and adjacent spaces should be safe
+            if ((c == 6 || c == 7 || c == 8)
+                && (r == 13 || r == 14)) {
+                spaceType = constants.GRASS;
+            } else {
+                let numTypes = constants.SPACE_TYPES.length;
+                let rand = Math.floor(Math.random() * numTypes);
+                spaceType = constants.SPACE_TYPES[rand];
+            }
             result[r].push(spaceType);
             displaySpace(spaceType, r, c);
         }
