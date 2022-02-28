@@ -1,0 +1,43 @@
+.goblin {
+    position: absolute;
+    top: 735px;
+    left: 515px;
+    height: 20px;
+    width: 20px;
+    background-color: blue;
+    outline: 1px solid white;
+}
+
+#year_title {
+    position: absolute;
+    top: 50px;
+    left: 1086px;
+}
+
+#curr_year {
+    position: absolute;
+    top: 50px;
+    left: 1150px;
+}
+
+#go_button {
+    top: 100px;
+}
+
+#stop_button {
+    top: 180px;
+}
+
+.button {
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+    left: 20px;
+    width: 100px;
+    background-color: lightgray;
+}
+
+.button:hover {
+    background: gray;
+}
+

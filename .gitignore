@@ -1,0 +1,5 @@
+# IDE settings
+.idea/
+
+# Finder settings
+.DS_Store
