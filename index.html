@@ -3,12 +3,15 @@
 <head>
     <script src="scripts/external/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/messages/message.css">
+    <link rel="stylesheet" href="styles/strategy/strategy.css">
 </head>
 <body>
     <!--Menu-->
     <h1>Pioneers</h1>
     <div id="start_button" class="button">Start</div>
-    <div id="stop_button" class="button">Stop</div>
+    <div id="resume_button" class="button">Resume</div>
+    <div id="pause_button" class="button">Pause</div>
 
     <!--Game Map-->
     <div id="map-start"></div>
@@ -16,17 +19,59 @@
 
     <div id="starting-spot"></div>
 
+    <div id="trailMarkingsMap">
+        <div class="trailMarking">
+
+    </div>
+
+
     <!--Stats-->
     <h2 id="year_title">Year:</h2>
     <h2 id="curr_year">0</h2>
 
+    <!--Messages-->
+    <div id="blurBackground"></div>
+    <div id="chooseCiv">
+        <div id="chooseCivMessage">Choose your civilization.</div>
+        <div id="chooseCivPrevButton" class="button">Previous</div>
+        <img id="goblinImg" class="characterImg" src="resources/goblin-2.png">
+        <img id="wizardImg" class="characterImg" src="resources/wizard-2.png">
+        <div id="chooseCivNextButton" class="button">Next</div>
+        <div id="civNameGoblin">Goblins</div>
+        <div id="civNameWizard">Wizards</div>
+        <div id="chooseCivSelectButton" class="button">Select</div>
+    </div>
+    <div id="trailsUnlocked">
+        <div id="trailsUnlockedMsg">You have unlocked Trail Markings! Pioneers can now follow the ancient trails of their elders. This unlocks a new Strategy and a new Skill.</div>
+        <div id="trailsUnlockedBtn" class="button">OK</div>
+    </div>
+
+    <!--Strategy-->
+    <h2 id="strategyTitle">Strategies</h2>
+    <div id="followTrail">
+        <input type="checkbox" id="followTrailCheckbox">
+        <label for="followTrailCheckbox">Follow The Trail</label>
+    </div>
+
+    <!--Skill-->
+     <h2 id="skillTitle">Skills</h2>
+     <div id="trailMarkings">
+        <input type="checkbox" id="trailMarkingsCheckbox">
+        <label for="trailMarkingsCheckbox">Trail Markings</label>
+    </div>
+
     <script type="module" src="scripts/animations/hoverCharacters.js"></script>
     <script type="module" src="scripts/animations/moveCharacters.js"></script>
+    <script type="module" src="scripts/maps/mapManager.js"></script>
+    <script type="module" src="scripts/messages/trailsUnlockedMessage.js"></script>
+    <script type="module" src="scripts/models/characterModel.js"></script>
+    <script type="module" src="scripts/strategy/strategyManager.js"></script>
+    <script type="module" src="scripts/strategy/randomStrategyManager.js"></script>
+    <script type="module" src="scripts/strategy/followBestStrategyManger.js"></script>
     <script type="module" src="scripts/utils/constants.js"></script>
-    <script type="module" src="scripts/character.js"></script>
-    <script type="module" src="scripts/controller.js"></script>
-    <script type="module" src="scripts/explore.js"></script>
-    <script type="module" src="scripts/map.js"></script>
+    <script type="module" src="scripts/characterManager.js"></script>
+    <script type="module" src="scripts/mainController.js"></script>
+
 
 </body>
 </html>

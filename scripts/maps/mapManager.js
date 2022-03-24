@@ -1,6 +1,6 @@
 // Generate the game map
 
-import * as constants from "./utils/constants.js";
+import * as constants from "../utils/constants.js";
 
 // Map Properties
 
@@ -15,6 +15,7 @@ function displaySpace(type, row, column) {
     space.css('top', top.toString() + 'px');
     space.css('left', left.toString() + 'px');
     space.appendTo('#map-start');
+    generateTrailMarkings(row, column);
 }
 
 // Randomly generate a game map
@@ -38,4 +39,21 @@ export function generateMap() {
         }
     }
     return result;
+}
+
+// Create trail markings for every space but hide them
+function generateTrailMarkings(row, column) {
+    let marker = $(document.createElement('div'));
+    let top = 20 + (constants.SPACE_SIZE * row) + 20;
+    let left = 150 + (constants.SPACE_SIZE * column) + 20;
+    marker.css('position', 'absolute');
+    marker.css('width', '10px');
+    marker.css('height', '10px');
+    marker.css('top', top.toString() + 'px');
+    marker.css('left', left.toString() + 'px');
+    marker.css('visibility', 'hidden');
+    marker.css('background-color', 'white');
+    marker.attr('id', 'trailMark-' + row + '-' + column);
+    marker.css('left', left.toString() + 'px');
+    marker.appendTo('#map-start');
 }

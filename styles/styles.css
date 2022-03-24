@@ -11,21 +11,27 @@
 #year_title {
     position: absolute;
     top: 50px;
-    left: 1086px;
+    left: 950px;
 }
 
 #curr_year {
     position: absolute;
     top: 50px;
-    left: 1150px;
+    left: 1050px;
 }
 
 #start_button {
     top: 100px;
 }
 
-#stop_button {
-    top: 180px;
+#resume_button {
+    visibility: hidden;
+    top: 100px;
+}
+
+#pause_button {
+    visibility: hidden;
+    top: 100px;
 }
 
 .button {
@@ -40,4 +46,3 @@
 .button:hover {
     background: gray;
 }
-

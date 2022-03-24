@@ -1,0 +1,32 @@
+/* Styling for the strategy buttons */
+
+
+
+#strategyTitle {
+    visibility: hidden;
+    position: absolute;
+    top: 500px;
+    left: 950px;
+}
+
+#followTrail {
+    visibility: hidden;
+    position: absolute;
+    top: 600px;
+    left: 950px;
+}
+
+#trailMarkings {
+    visibility: hidden;
+    position: absolute;
+    top: 400px;
+    left: 950px;
+}
+
+#skillTitle {
+    visibility: hidden;
+    position: absolute;
+    top: 300px;
+    left: 950px;
+}
+
