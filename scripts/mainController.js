@@ -1,4 +1,4 @@
-// Main class
+// Main class and starting point of the game
 
 import * as mapManager from "./maps/mapManager.js";
 import * as constants from "./utils/constants.js";

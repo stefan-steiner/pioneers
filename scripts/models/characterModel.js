@@ -3,9 +3,6 @@
 import * as constants from "../utils/constants.js";
 import * as controller from "../mainController.js";
 
-// trail is a map of previous coordinates and the direction taken from there
-// route is a set of instructions of where to go retrieved from another character's trail
-
 export default class Character {
     constructor(class_name, population, coords, alive, strategy, skill) {
         this.class_name = class_name;
@@ -32,6 +29,7 @@ export default class Character {
         $(this.id).css('background-color', 'darkred');
     }
 
+    // Route is a set of instructions of where to go retrieved from another character's trail
     setRoute() {
         if (this.strategy === constants.FOLLOW_BEST_STRATEGY) {
             this.route = controller.getBestCharacter().trail;
@@ -39,6 +37,8 @@ export default class Character {
         }
     }
 
+    // Trail is a map of the previous spaces visited by a character and the direction they took from there
+    // Example: {'0,7': 'left', '0,6: 'up'}
     addToTrail(coords, direction) {
         this.trail.set(this.coords[0].toString() + ',' + this.coords[1].toString(), direction);
     }

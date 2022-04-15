@@ -4,14 +4,12 @@ import * as constants from "./utils/constants.js";
 import * as controller from "./mainController.js";
 import * as randomStrategyManager from "./strategy/randomStrategyManager.js";
 import * as strategyManager from "./strategy/strategyManager.js";
+import * as markTrailsSkillManager from "./skill/markTrailsSkillManager.js";
+import * as hoverCharacters from "./animations/hoverCharacters.js";
+import * as moveCharacters from "./animations/moveCharacters.js";
+import * as followBestStrategyManger from "./strategy/followBestStrategyManger.js";
 
 import Character from "./models/characterModel.js"
-
-import {hoverOnChar, hoverOffChar} from "./animations/hoverCharacters.js";
-import * as moveCharacters from "./animations/moveCharacters.js";
-import {getBestRoute} from "./strategy/followBestStrategyManger.js";
-import * as trailMarkings from "./maps/trailMarkings.js";
-import {getCivilization} from "./mainController.js";
 
 // The loop that advances each character every turn and checks conditions: ex.death, new best
 export async function go(character) {
@@ -20,7 +18,7 @@ export async function go(character) {
         if (character.strategy === constants.RANDOM_STRATEGY) {
             direction = randomStrategyManager.chooseRandomDirection(character);
         } else if (character.strategy === constants.FOLLOW_BEST_STRATEGY) {
-            direction = strategyManager.chooseFollowRoute(character, getBestRoute())
+            direction = strategyManager.chooseFollowRoute(character, followBestStrategyManger.getBestRoute())
         }
         character.addToTrail(character.coords, direction);
 
@@ -49,23 +47,9 @@ export function checkForFurthestCharacter(character) {
                 let oldBest = controller.getBestCharacter();
                 console.log("New best character: " + character.id);
                 controller.setBestCharacter(character);
-                displayBestTrail(character, oldBest);
+                markTrailsSkillManager.displayBestTrail(character, oldBest);
             }
         }
-    }
-}
-
-function displayBestTrail(newBest, oldBest) {
-    console.log("New best trail");
-    if (oldBest !== null) {
-        for (const [key] of oldBest.trail.entries()) {
-            let coords = key.split(",");
-            trailMarkings.changeMarkingVisibility(coords[1], coords[0], false);
-        }
-    }
-    for (const [key] of newBest.trail.entries()) {
-        let coords = key.split(",");
-        trailMarkings.changeMarkingVisibility(coords[1], coords[0], true);
     }
 }
 
@@ -93,16 +77,16 @@ export function initGoblin() {
     let goblinElement = $( goblin.id );
     goblinElement.css('background-color', chooseColor());
     goblinElement.hover( function() {
-        hoverOnChar(goblin.id);
+        hoverCharacters.hoverOnChar(goblin.id);
     }, function() {
-        hoverOffChar(goblin.id);
+        hoverCharacters.hoverOffChar(goblin.id);
     });
     controller.addGoblin(goblin);
     go(goblin);
 }
 
 // Pick character color based on selected civilization
-function chooseColor() {
+export function chooseColor() {
     switch (controller.getCivilization()) {
         case constants.WIZARD:
             return 'blue';

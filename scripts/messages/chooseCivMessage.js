@@ -1,12 +1,13 @@
 // Display a prompt to choose your civilization
 
 import * as controller from "../mainController.js";
+import * as characterManager from "../characterManager.js";
+import * as mapManager from "../maps/mapManager.js";
 import {GOBLIN, WIZARD, CIVILIZATIONS} from "../utils/constants.js";
-
-
 
 let currentCiv = 0
 
+// Show the character selection menu
 export function showChooseCiv() {
     $("#blurBackground").css('visibility', 'visible');
     $("#chooseCiv").css('visibility', 'visible');
@@ -16,13 +17,16 @@ export function showChooseCiv() {
 
 let chooseCivSelectButtonClicked = false;
 
+// Executes when a civ has been selected
 $( "#chooseCivSelectButton" ).click(function() {
     console.log("Clicked Select - picked civilization: ", CIVILIZATIONS[currentCiv]);
     controller.setCivilization(CIVILIZATIONS[currentCiv])
+    mapManager.generateTrailMarkings(characterManager.chooseColor());
     hideCiv(CIVILIZATIONS[currentCiv]);
     chooseCivSelectButtonClicked = true;
 });
 
+// Wait until select civ has been clicked to continue game
 function waitUntilClick() {
     if (chooseCivSelectButtonClicked) {
         $("#blurBackground").css('visibility', 'hidden');

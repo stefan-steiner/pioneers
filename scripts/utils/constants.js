@@ -18,10 +18,12 @@ export const SPACE_TYPES = [GRASS, GRASS, GRASS, GRASS,
 
 // Movement
 
-export const LEFT = "left"
-export const RIGHT = "right"
-export const UP = "up"
-export const DOWN = "down"
+export const LEFT = "left";
+export const RIGHT = "right";
+export const UP = "up";
+export const DOWN = "down";
+
+export const DIRECTIONS = [LEFT, RIGHT, UP, DOWN];
 
 // Strategies
 

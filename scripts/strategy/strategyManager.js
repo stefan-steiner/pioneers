@@ -1,38 +1,21 @@
 // General strategy utils for the movement algorithms
 
-import {setCurrentSkill, setCurrentStrategy} from "../mainController.js";
-import {FOLLOW_BEST_STRATEGY, MARK_TRAILS_SKILL, NO_SKILL, RANDOM_STRATEGY} from "../utils/constants.js";
-
-let followTrailCheckbox = $("#followTrailCheckbox");
-
-let trailMarkingsCheckbox = $("#trailMarkingsCheckbox");
-
-let trailsSkillBtn = $("#trailMarkings");
-
-let trailsStrategyBtn = $("#followTrail");
-
-let skillTitle = $("#skillTitle");
+import {setCurrentStrategy} from "../mainController.js";
+import {FOLLOW_BEST_STRATEGY, RANDOM_STRATEGY} from "../utils/constants.js";
 
 let strategyTitle = $("#strategyTitle");
 
+let followTrailCheckbox = $("#followTrailCheckbox");
+
+let trailsStrategyBtn = $("#followTrail");
+
+// Display the follow trails strategy option
 export function showTrailsStrategy() {
-    trailsSkillBtn.css('visibility', 'visible');
     trailsStrategyBtn.css('visibility', 'visible');
-    skillTitle.css('visibility', 'visible');
     strategyTitle.css('visibility', 'visible');
 }
 
-trailsSkillBtn.click(function() {
-    if (trailMarkingsCheckbox.is(":checked")){
-        console.log("Setting skill to mark trails");
-        setCurrentSkill(MARK_TRAILS_SKILL);
-    } else {
-        console.log("Setting skill to none");
-        setCurrentSkill(NO_SKILL);
-    }
-});
-
-
+// When the follow trails checkbox is clicked set that as the current strategy
 trailsStrategyBtn.click(function() {
     if (followTrailCheckbox.is(":checked")){
         console.log("Setting strategy to follow the trail");
